@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    [
+      "relay",
+      {
+        "artifactDirectory": "./__relay_artifacts__"
+      }
+    ]
+  ]
+}

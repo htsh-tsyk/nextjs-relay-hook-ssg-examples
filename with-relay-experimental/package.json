@@ -1,0 +1,35 @@
+{
+  "name": "with-relay-experimental",
+  "version": "1.0.0",
+  "description": "Example of Next.js with Relay Experimental",
+  "scripts": {
+    "graphcool-init": "graphcool init --schema schema/init-schema.graphql",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "relay": "relay-compiler --src ./ --language typescript --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' --exclude '**/schema/**' --schema ./schema/schema.graphql --artifactDirectory ./__relay_artifacts__",
+    "schema": "graphql get-schema -e dev"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "15.3.0",
+    "next": "latest",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-no-ssr": "1.1.0",
+    "react-relay": "^0.0.0-experimental-94e87455",
+    "relay-runtime": "^9.1.0"
+  },
+  "devDependencies": {
+    "@types/next": "9.0.0",
+    "@types/react-relay": "7.0.8",
+    "@types/relay-runtime": "9.1.5",
+    "babel-plugin-relay": "9.1.0",
+    "graphcool": "0.11.6",
+    "graphql-cli": "4.0.0",
+    "prettier": "2.0.5",
+    "relay-compiler": "9.1.0",
+    "relay-compiler-language-typescript": "12.0.3",
+    "relay-devtools": "1.4.0"
+  }
+}
