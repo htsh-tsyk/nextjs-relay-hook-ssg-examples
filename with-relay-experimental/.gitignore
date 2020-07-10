@@ -1,4 +1,3 @@
 __relay_artifacts__/
-schema/schema.graphql
 node_modules
 .next
