@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Example of Next.js with Relay Experimental",
   "scripts": {
-    "graphcool-init": "graphcool init --schema schema/init-schema.graphql",
     "dev": "next",
     "build": "next build",
     "start": "next start",
@@ -18,7 +17,7 @@
     "react-dom": "16.13.1",
     "react-no-ssr": "1.1.0",
     "react-relay": "^0.0.0-experimental-94e87455",
-    "relay-runtime": "^9.1.0"
+    "relay-runtime": "9.1.0"
   },
   "devDependencies": {
     "@types/next": "9.0.0",
