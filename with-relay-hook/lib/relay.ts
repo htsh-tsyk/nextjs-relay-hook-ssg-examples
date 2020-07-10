@@ -14,8 +14,6 @@ let relayEnvironment: Environment;
 const fetchQuery: FetchFunction = async (
   operation,
   variables,
-  cacheConfig,
-  uploadables
 ) => {
   return fetch(process.env.NEXT_PUBLIC_RELAY_ENDPOINT, {
     method: "POST",
