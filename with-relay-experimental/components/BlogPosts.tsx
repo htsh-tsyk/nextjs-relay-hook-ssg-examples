@@ -1,16 +1,15 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { graphql } from "relay-runtime";
 import BlogPostPreview from "./BlogPostPreview";
 import { usePaginationFragment } from "react-relay/hooks";
 import { BlogPosts_viewer$key } from "../__relay_artifacts__/BlogPosts_viewer.graphql";
-import { cache } from "../lib/relay";
 
 const query = graphql`
   fragment BlogPosts_viewer on Viewer
-    # @argumentDefinitions(
-    #   after: { type: "String" }
-    #   first: { type: "Int", defaultValue: 10 }
-    # )
+    @argumentDefinitions(
+      after: { type: "String" }
+      first: { type: "Int", defaultValue: 5 }
+    )
     @refetchable(queryName: "BlogPostsPagingQuery") {
     allBlogPosts(first: $first, after: $after, orderBy: createdAt_DESC)
       @connection(key: "BlogPosts_allBlogPosts") {
@@ -39,11 +38,18 @@ const BlogPosts: React.FC<Props> = (props) => {
 
   const { data, loadNext, isLoadingNext } = actions;
 
-  const handleLoadMore = useCallback(() => {
+  const handleLoadMore = useCallback(async () => {
     if (isLoadingNext) {
       return;
     }
-    loadNext(5);
+
+    await new Promise((resolve, reject) => {
+      loadNext(5, {
+        onComplete: (error) => {
+          error ? reject(error) : resolve();
+        },
+      });
+    });
   }, [isLoadingNext, loadNext]);
 
   return (

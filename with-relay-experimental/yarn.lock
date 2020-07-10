@@ -8334,7 +8334,7 @@ relay-devtools@1.4.0:
     update-notifier "^2.2.0"
     ws "^3.1.0"
 
-relay-runtime@9.1.0, relay-runtime@^9.1.0:
+relay-runtime@9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-9.1.0.tgz#d0534007d5c43e7b9653c6f5cc112ffac09c5020"
   integrity sha512-6FE5YlZpR/b3R/HzGly85V+c4MdtLJhFY/outQARgxXonomrwqEik0Cr34LnPK4DmGS36cMLUliqhCs/DZyPVw==

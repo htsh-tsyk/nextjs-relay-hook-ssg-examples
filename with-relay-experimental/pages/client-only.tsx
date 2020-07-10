@@ -5,18 +5,18 @@ import React from "react";
 import { useLazyLoadQuery } from "react-relay/hooks";
 import NoSSR from "react-no-ssr";
 import { NextPage } from "next";
-import { suspenseQuery } from "../__relay_artifacts__/suspenseQuery.graphql";
+import { clientOnlyQuery } from "../__relay_artifacts__/clientOnlyQuery.graphql";
 
 const query = graphql`
-  query suspenseQuery($first: Int!, $after: String) {
+  query clientOnlyQuery($first: Int!, $after: String) {
     viewer {
-      ...BlogPosts_viewer
+      ...BlogPosts_viewer @arguments(first: $first, after: $after)
     }
   }
 `;
 
 const PostQuery: NextPage = () => {
-  const props = useLazyLoadQuery<suspenseQuery>(
+  const props = useLazyLoadQuery<clientOnlyQuery>(
     query,
     { first: 5 },
     { fetchPolicy: "store-or-network" }
@@ -40,7 +40,7 @@ const Index = () => {
         <a>Client only</a>
       </Link>
 
-      <h1>fetch BlogPosts from client side.</h1>
+      <h1>fetch BlogPosts from client side with.</h1>
       <NoSSR>
         <React.Suspense fallback={<p>Loading...</p>}>
           <PostQuery />

@@ -10,7 +10,7 @@ import { pagesQuery } from "../__relay_artifacts__/pagesQuery.graphql";
 const query = graphql`
   query pagesQuery($first: Int!, $after: String) {
     viewer {
-      ...BlogPosts_viewer
+      ...BlogPosts_viewer @arguments(first: $first, after: $after)
     }
   }
 `;
