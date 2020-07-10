@@ -1,6 +1,6 @@
-import { graphql } from 'react-relay'
-import { useFragment } from 'relay-hooks'
-import { BlogPostPreview_post$key } from '../__relay_artifacts__/BlogPostPreview_post.graphql'
+import { graphql } from "react-relay";
+import { useFragment } from "relay-hooks";
+import { BlogPostPreview_post$key } from "../__relay_artifacts__/BlogPostPreview_post.graphql";
 
 const fragments = {
   post: graphql`
@@ -9,15 +9,15 @@ const fragments = {
       title
     }
   `,
-}
+};
 
 type Props = {
-  post: BlogPostPreview_post$key
-}
+  post: BlogPostPreview_post$key;
+};
 
 const BlogPostPreview: React.FC<Props> = (props) => {
-  const post = useFragment(fragments.post, props.post)
-  return <li>{post.title}</li>
-}
+  const post = useFragment(fragments.post, props.post);
+  return <li>{post.title}</li>;
+};
 
-export default BlogPostPreview
+export default BlogPostPreview;

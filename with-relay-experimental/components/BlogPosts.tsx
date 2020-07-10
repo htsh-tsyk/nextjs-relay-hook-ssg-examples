@@ -34,9 +34,10 @@ type Props = {
 };
 
 const BlogPosts: React.FC<Props> = (props) => {
-  const actions = usePaginationFragment(fragments.viewer, props.viewer);
-
-  const { data, loadNext, isLoadingNext } = actions;
+  const { data, loadNext, isLoadingNext } = usePaginationFragment(
+    fragments.viewer,
+    props.viewer
+  );
 
   const handleLoadMore = useCallback(async () => {
     if (isLoadingNext) {

@@ -1,25 +1,25 @@
-import { graphql } from 'react-relay'
-import BlogPostPreview from './BlogPostPreview'
-import { usePagination } from 'relay-hooks'
-import { BlogPosts_viewer$key } from '../__relay_artifacts__/BlogPosts_viewer.graphql'
-import { useCallback } from 'react'
+import { graphql } from "react-relay";
+import BlogPostPreview from "./BlogPostPreview";
+import { usePagination } from "relay-hooks";
+import { BlogPosts_viewer$key } from "../__relay_artifacts__/BlogPosts_viewer.graphql";
+import { useCallback } from "react";
 
 type Props = {
-  viewer: BlogPosts_viewer$key
-}
+  viewer: BlogPosts_viewer$key;
+};
 
 const connectionConfig = {
   getVariables(props, { count, cursor }, fragmentVariables) {
     return {
       first: count,
       after: cursor,
-    }
+    };
   },
   getFragmentVariables(prevVars, first) {
     return {
       ...prevVars,
       first,
-    }
+    };
   },
 
   query: graphql`
@@ -29,7 +29,7 @@ const connectionConfig = {
       }
     }
   `,
-}
+};
 
 const fragments = {
   viewer: graphql`
@@ -48,17 +48,17 @@ const fragments = {
       }
     }
   `,
-}
+};
 
 const BlogPosts: React.FC<Props> = (props) => {
   const [viewer, { isLoading, hasMore, loadMore }] = usePagination(
     fragments.viewer,
     props.viewer
-  )
+  );
 
   const handleLoadMore = useCallback(async () => {
     if (!hasMore() || isLoading()) {
-      return
+      return;
     }
 
     await new Promise((resolve, reject) => {
@@ -67,14 +67,14 @@ const BlogPosts: React.FC<Props> = (props) => {
         5,
         (error) => {
           if (error) {
-            return reject(error)
+            return reject(error);
           }
-          resolve()
+          resolve();
         },
         {}
-      )
-    })
-  }, [])
+      );
+    });
+  }, []);
 
   return (
     <div>
@@ -87,7 +87,7 @@ const BlogPosts: React.FC<Props> = (props) => {
 
       <button onClick={handleLoadMore}>Load More</button>
     </div>
-  )
-}
+  );
+};
 
-export default BlogPosts
+export default BlogPosts;
